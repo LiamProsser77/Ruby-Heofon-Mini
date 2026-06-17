@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Results - Heofon Mini</title>
+  <style>
+    body { font-family: Arial; background: #0a0a0a; color: #fff; padding: 40px; }
+    .result { background: #1a1a1a; padding: 20px; margin: 15px auto; max-width: 700px; border-radius: 10px; }
+  </style>
+</head>
+<body>
+  <h2>Results for "<%= query %>"</h2>
+  
+  <% if results.empty? %>
+    <p>No results found for your search.</p>
+  <% else %>
+    <% results.each do |key, desc| %>
+      <div class="result">
+        <h3><%= key.capitalize %></h3>
+        <p><%= desc %></p>
+      </div>
+    <% end %>
+  <% end %>
+  
+  <a href="/">← New Search</a>
+</body>
+</html>
