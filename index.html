@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heofon Mini Search</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f8f9fa;
+    }
+    h1 { color: #0d6efd; }
+    input {
+      padding: 12px;
+      width: 350px;
+      font-size: 18px;
+      border: 2px solid #0d6efd;
+      border-radius: 8px;
+    }
+    button {
+      padding: 12px 24px;
+      font-size: 18px;
+      background-color: #0d6efd;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>🔍 Heofon Mini Search</h1>
+  <p>A simple search engine made while learning Ruby</p>
+  
+  <input type="text" id="search" placeholder="Try searching: ruby, heofon, liam...">
+  <button onclick="search()">Search</button>
+
+  <div id="results" style="margin-top: 40px; text-align: left; max-width: 600px; margin-left: auto; margin-right: auto;"></div>
+
+  <script>
+    const pages = [
+      { title: "Welcome to Heofon", content: "Privacy-first search engine founded by Liam in 2026", url: "https://heofonsearch.zite.so" },
+      { title: "Learning Ruby", content: "Ruby is a beautiful and fun programming language", url: "#" },
+      { title: "About Liam", content: "Norwegian-American developer and founder of Heofon", url: "https://github.com/LiamProsser77" }
+    ];
+
+    function search() {
+      const query = document.getElementById("search").value.toLowerCase().trim();
+      const resultsDiv = document.getElementById("results");
+      resultsDiv.innerHTML = "";
+
+      if (query === "") {
+        resultsDiv.innerHTML = "<p>Please type something to search.</p>";
+        return;
+      }
+
+      const results = pages.filter(page => 
+        page.title.toLowerCase().includes(query) || 
+        page.content.toLowerCase().includes(query)
+      );
+
+      if (results.length === 0) {
+        resultsDiv.innerHTML = `<p>No results found for "<strong>${query}</strong>". Try another word.</p>`;
+      } else {
+        results.forEach(result => {
+          resultsDiv.innerHTML += `
+            <h3>${result.title}</h3>
+            <p>${result.content}</p>
+            <a href="${result.url}" target="_blank">Visit →</a><br><br>
+          `;
+        });
+      }
+    }
+  </script>
+</body>
+</html>
