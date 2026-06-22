@@ -1,0 +1,2 @@
+puts "Ruby-Heofon-Mini".upcase
+puts "Hello, and welcome to Ruby Heofon".chomp
